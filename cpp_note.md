@@ -28,7 +28,7 @@ double sum(const vector<double>& v);
 ```
 ## User-Defined Types
 
-- structure `struct`
+- **structure `struct`**
 
 ```cpp
 // basic structure
@@ -51,7 +51,7 @@ void f(Vector r, Vector& rv, Vector* pv){
 }
 // reference is like a nickname, though different name, but the same person
 ```
-- Class
+- **Class**
 
 Notice that regardless of the number of elements of each object, 
 all the objects are of the same size (i.e. taking up the same size of space) 
@@ -70,7 +70,7 @@ class Vector{
 _A struct is simply a class with its members public by default_\
 Notice that you can also define constructor and member function for `struct` objects.
 
-- Union
+- **Union**
 
 The purpose of union is to save memory by using the same memory region for storing different objects at different times.\
 That is the same class might have some subtypes, which can effect the type of clas member it uses.\
@@ -114,7 +114,7 @@ void f(Entry* p){
     }
 }
 ```
-- Enumeration
+- **Enumeration**
     1. `enum class`
     2. plain `enum`
 
@@ -151,6 +151,6 @@ Define operation for enumerations is recommended. Also, `enumeration class` is p
 
 ## Modularity
 
-- *Separate compliation*
+- **Separate compliation**
 ![](./figs/header.png)
 
