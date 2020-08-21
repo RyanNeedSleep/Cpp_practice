@@ -185,4 +185,5 @@ know if the provided function does error handling inside, so that you don't have
 void f() noexcept{
     // TODO
 }
-
+// if an error is still thrown though declared noexcept, program will terminate with error
+```
