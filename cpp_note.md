@@ -151,6 +151,6 @@ Define operation for enumerations is recommended. Also, `enumeration class` is p
 
 ## Modularity
 
-- Separate compilation
+- *Separate compliation*
 ![](./figs/header.png)
 
