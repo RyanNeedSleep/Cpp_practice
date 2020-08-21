@@ -177,7 +177,7 @@ int main(){
 }
 ```
 You can do error handling at any level. However, when working in a large project, you might not
-know if the provided function does error handling inside, so that you don't have do it.\
+know if the provided function does error handling inside, so that you don't have do it.
 
 `noexcept` is a way to tell others that you have done error handling inside, so others don't have to catch anything (i.e. nothing will be thrown)
 
