@@ -154,3 +154,26 @@ Define operation for enumerations is recommended. Also, `enumeration class` is p
 - **Separate compliation**
 ![](./figs/header.png)
 
+- **Error handling**
+
+```cpp
+class Error{};
+
+void f(){
+    // some tasks...
+    // if error happens, throw something
+    // it's like a error version of return. you can throw anything
+    throw Error
+}
+
+int main(){
+    try{
+        f(); // call f()
+    }
+    catch(Error){
+        // if 'Error' is thrown, do the following
+        // some tasks...
+    } // so that the program will not directly terminated when Error happens
+}
+```
+

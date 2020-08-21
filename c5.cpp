@@ -1,19 +1,19 @@
 #include <iostream>
 
-using namespace std; 
+using namespace std;
+
+class Error{};
+class Error1{};
+void test1() {
+    throw Error1();
+}
 
 int main(){
-    enum color{
-        red,
-        blue, 
-        black
-    };
-    
-   enum class card{
-        red,
-        blue,
-        black
-   }; 
-   color x = color::red;
-   int y = x; 
+    try{
+        test1();
+    }
+    catch(Error){
+        cout << "ohhhh" << endl;
+    }
+    cout << "still working" << endl;
 }
