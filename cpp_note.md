@@ -117,7 +117,9 @@ void f(Entry* p){
 }
 ```
 - **Enumeration**
+
     1. `enum class`
+
     2. plain `enum`
 
 In `enum class`, the variables are in a local scope of enum class.\
@@ -209,4 +211,4 @@ Vector::Vector(int s){
     ```cpp
     static_assert(4<sizeof(int), "interger space is too small");
     ```
-    __Be aware that you can only check the const expression with static assertions__
+    _Be aware that you can only check the const expression with static assertions_
