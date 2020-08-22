@@ -201,7 +201,7 @@ Vector::Vector(int s){
     // TODO
 }
 ```
-    However, sometimes it is preferable to check these assumptions while in the compile time. This is when the static assertion comes in.
+However, sometimes it is preferable to check these assumptions while in the compile time. This is when the static assertion comes in.
 
 - **Static Assertion**
 
