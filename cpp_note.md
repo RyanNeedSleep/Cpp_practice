@@ -210,4 +210,4 @@ Vector::Vector(int s){
 ```cpp
 static_assert(4<sizeof(int), "interger space is too small");
 ```
-    _Be aware that you can only check the const expression with static assertions_
+_Be aware that you can only check the const expression with static assertions_
