@@ -208,7 +208,7 @@ Vector::Vector(int s){
 
     To check something in the compile time you can simply call `static_assert(A, S)`. This means that if `A` is not satisfied, it will print compile error message `S`.
 
-    ```cpp
-    static_assert(4<sizeof(int), "interger space is too small");
-    ```
+```cpp
+static_assert(4<sizeof(int), "interger space is too small");
+```
     _Be aware that you can only check the const expression with static assertions_
