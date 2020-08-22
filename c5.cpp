@@ -2,18 +2,10 @@
 
 using namespace std;
 
-class Error{};
-class Error1{};
-void test1() {
-    throw Error1();
-}
+constexpr int C = 10;
 
-int main(){
-    try{
-        test1();
-    }
-    catch(Error){
-        cout << "ohhhh" << endl;
-    }
-    cout << "still working" << endl;
+void test(int speed){
+    const int s = 1;
+    static_assert(s<C , "hello");
+
 }

@@ -1,5 +1,7 @@
 # C++ Note
 
+> You don’t have to know every detail of C++ to write good programs.
+> Focus on programming techniques, not on language features.
 ```cpp
 // to iterate over an iterable
 // lets say v is an array
@@ -15,7 +17,7 @@ for(auto& x : v){
 ```
 
 ### Pass-by-reference
-it is like passing the address of the data at the arguments
+it is like passing the alias of the data at the arguments
 
 ```cpp
 // avoid copying the passing data
@@ -187,3 +189,24 @@ void f() noexcept{
 }
 // if an error is still thrown though declared noexcept, program will terminate with error
 ```
+
+- **Invariant**
+
+    The invariant of a function or class is its predefinition. For example, when we write a customized `Vector`, we would assume that the index should be an non-negative integer. Then this assumption is the invariant of Vector class.
+
+```cpp
+Vector::Vector(int s){
+    if(s<0) throw length_error{};
+    // TODO
+}
+```
+    However, sometimes it is preferable to check these assumptions while in the compile time. This is when the static assertion comes in.
+
+- **Static Assertion**
+
+    To check something in the compile time you can simply call `static_assert(A, S)`. This means that if `A` is not satisfied, it will print compile error message `S`.
+
+    ```cpp
+    static_assert(4<sizeof(int), "interger space is too small");
+    ```
+    __Be aware that you can only check the const expression with static assertions__
