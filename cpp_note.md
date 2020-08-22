@@ -210,4 +210,78 @@ However, sometimes it is preferable to check these assumptions while in the comp
 ```cpp
 static_assert(4<sizeof(int), "interger space is too small");
 ```
-_Be aware that you can only check the const expression with static assertions_
+_Be aware that you can only check the const expression with static assertions!!_
+
+## Classes
+
+- Concrete tpye
+
+
+
+
+
+### constant member function
+
+A constant member function can be accessed by both constant or non-constant object. But a non-constant member function can only be accessed by non-constant function. 
+
+Think about the following scenario: when you want your object to be a constant, you wouldn't want the data inside that object to be change by any of its member function. Thus, to protect the data inside, such as read(), you can only call the member function that is declared `const`. 
+
+```cpp 
+class Test{
+    private:
+        // todo
+    public:
+        // todo
+        int getValue() const; // const Test can call
+        void writeValue(int x); // const Test cannot call 
+};
+
+int main(){
+    const Test t;
+    int a = t.getValue(); // OK
+    t.writeValue(10); // Error: writeValue is not a const memebr function
+}
+```
+
+- **Container**
+
+Container is an object that stores a collection of objects inside, for example `Vector`.
+
+- **Destructor**
+
+If allocating memory with `new`, when the data is no longer needed, it should be deallocated. Otherwise, there will be space wasted
+
+```cpp 
+class Vector{
+    private:
+        double* elem;
+        int sz;
+    public:
+        Vector(int s): elem{new double[s]}, sz{s}{
+            for(int i = 0; i!=s; i++){
+                elem[i] = 0;
+            }
+        }
+        
+        ~Vector(){delete[] elem;}     
+        double& operator[](int i);
+        int size(); 
+}; 
+```
+The way destructor is called is as follow:
+
+```cpp
+void f(int n){
+    Vector v1(n);
+    
+    // use v1
+    
+    {
+        Vector v2(2*n);
+        // use v2
+    } // v2 is destroyed
+    
+    // use v1
+}// v1 is destroyed
+```
+
