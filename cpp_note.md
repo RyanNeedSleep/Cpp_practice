@@ -284,6 +284,70 @@ int main(){
          // use v1
     }// v1 is destroyed
     ```
+- **Member Initializer List**
+
+    The following is the useage of member initialier list:
+    
+    ```cpp
+    class A{
+        public:
+            A(): x(0){}
+            A(int i): x(i){}
+
+        private:
+            const int x;
+    };
+    ```
+    However, why should we use it? Let's see the following example:
+    ```cpp
+    class A{
+        public:
+            A(){ x = 0 }
+            A(int i){ x =i }
+        
+        private:
+            int x;
+    }; 
+    
+    class B{
+        public:
+            B(){
+                a.x = 3;
+            }
+
+        private:
+            A a;
+    };
+    ```
+
+    If you want to initialize object B, you would have to call default constructor of A, and then assign `3` to `a.x`. But if you use member initializer list, you can directly call the constructor `A(int i)`.
+
+    ```cpp
+    class B{
+        public:
+            B(): a(3){}
+
+        private:
+            A a;
+    };
+    ```
+    
+    However, when you have some const member or a memeber that does not have 'default constructor', then you must use memeber initializer list.
+
+    ```cpp
+    class B{
+        public:
+            B(): a(3){}
+        private:
+            const A a;
+    }
+    ```
+    
+    In conclusion, the timing of using memeber initializer list is when you have to initialize a member with some arguments or you want to reduce the time to initialize a member.
+    
+    The moment a const type is initialized, you have to provide it with an argument (when an object is initialized, its constructor is called first, and then the constructor of its member object)
+    
+    reference: [Why should I prefer to use member initialization lists?][1]
 
 - **Special pointer**
 
@@ -341,3 +405,5 @@ int main(){
 <p align="center">
   <img src="./figs/arr.gif">
 </p
+
+[1] https://stackoverflow.com/questions/926752/why-should-i-prefer-to-use-member-initialization-lists
