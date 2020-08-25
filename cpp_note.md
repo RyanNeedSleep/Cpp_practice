@@ -208,7 +208,7 @@ However, sometimes it is preferable to check these assumptions while in the comp
     To check something in the compile time you can simply call `static_assert(A, S)`. This means that if `A` is not satisfied, it will print compile error message `S`.
 
    ```cpp
-        static_assert(4<sizeof(int), "interger space is too small");
+    static_assert(4<sizeof(int), "interger space is too small");
    ```
     _Be aware that you can only check the const expression with static assertions!!_
 
@@ -224,7 +224,7 @@ However, sometimes it is preferable to check these assumptions while in the comp
 
 A constant member function can be accessed by both constant or non-constant object. But a non-constant member function can only be accessed by non-constant function. 
 
-Think about the following scenario: when you want your object to be a constant, you wouldn't want the data inside that object to be change by any of its member function. Thus, to protect the data inside, such as read(), you can only call the member function that is declared `const`. 
+ Think about the following scenario: when you want your object to be a constant, you wouldn't want the data inside that object to be change by any of its member function. Thus, to protect the data inside, such as read(), you can only call the member function that is declared `const`. 
 
 ```cpp 
 class Test{
@@ -245,43 +245,96 @@ int main(){
 
 - **Container**
 
-Container is an object that stores a collection of objects inside, for example `Vector`.
+    Container is an object that stores a collection of objects inside, for example `Vector`.
 
 - **Destructor**
 
-If allocating memory with `new`, when the data is no longer needed, it should be deallocated. Otherwise, there will be space wasted
+    If allocating memory with `new`, when the data is no longer needed, it should be deallocated. Otherwise, there will be space wasted
 
-```cpp 
-class Vector{
-    private:
-        double* elem;
-        int sz;
-    public:
-        Vector(int s): elem{new double[s]}, sz{s}{
-            for(int i = 0; i!=s; i++){
-                elem[i] = 0;
+    ```cpp 
+    class Vector{
+        private:
+            double* elem;
+            int sz;
+        public:
+            Vector(int s): elem{new double[s]}, sz{s}{ // maybe some error handling here
+                for(int i = 0; i!=s; i++){
+                    elem[i] = 0;
+                }
             }
-        }
         
-        ~Vector(){delete[] elem;}     
-        double& operator[](int i);
-        int size(); 
-}; 
-```
-The way destructor is called is as follow:
+            ~Vector(){delete[] elem;}     
+            double& operator[](int i);
+            int size(); 
+    }; 
+    ```
+    The way destructor is called is as follow:
 
-```cpp
-void f(int n){
-    Vector v1(n);
+    ```cpp
+    void f(int n){
+        Vector v1(n);
+        
+        // use v1
+        
+        {
+           Vector v2(2*n);
+            // use v2
+        } // v2 is destroyed
     
-    // use v1
-    
-    {
-        Vector v2(2*n);
-        // use v2
-    } // v2 is destroyed
-    
-    // use v1
-}// v1 is destroyed
-```
+         // use v1
+    }// v1 is destroyed
+    ```
 
+- **Special pointer**
+
+    * Null pointer
+
+        If initializing a pointer without assignment, it will be randomly assigned with a address of a memory that might be free or in use. Therefore, if we write something in them without notice, there might be some trouble.
+
+        When you have not decided which adress you want to point to, just assign it with NULL
+        like this : `int *ptr = NULL;`. 
+
+    * Void pointer (generic pointer)
+
+        A void pointer can point to variables of any type. However, it cannot be dereferenced. It should be casted before dereferenced. 
+        
+        ```cpp
+        int var = 10;
+        void *ptr = &var;
+        
+        cout << *ptr << endl; // compile error
+        cout << *(int *) ptr << endl; // OK
+        ```
+        
+        what `malloc()` returns is also a void pointer.
+
+    * Dangling pointer
+
+        When you `free()` to deallocate that memory, it would become unreserved. Yet, it still points to the same address as before. The value might or might not be changed (Surely, `free()` will not change that value)
+    
+    * Pointer arithmetic
+    
+    ```cpp
+    int num = 5; // let's say the address is 100
+    int *ptr = &num; // ptr : 100
+    int *ptr2 = ptr + 3 // ptr2 : 100 + 3 * sizeof(int) = 112   
+
+    // IMPORTANT : + 3 means plus the 3 units of that object size
+    
+    /* Notice : different types of pointer cannot do +/- operation */
+    
+    // arr and &arr is different in type
+    /* &arr will evaluate this as the address of the whole array object. which is set to the base element of the array */
+    
+    int arr[5] = {1, 2, 3, 4, 5};
+    cout << arr << endl;           // 100
+    cout << &arr << endl;          // 100 
+    cout << &arr[0] << endl;       // 100
+    // all of the above address are the same
+
+    cout << arr + 1 << endl;       // 104 = 100 + 1 unit of int size = 100 + 1*4 
+    cout << &arr + 1 << endl;      // 120 = 100 + 1 unit of arraysize = 100 + 5*4 
+    cout << &arr[0] + 1 << endl;   // 104 = 100 + 1 unit of int size = 100 + 1*4
+    ```
+    **Notice that** : the type of `&arr` is `int*[5]`.
+    ![](./figs/arr.gif) 
