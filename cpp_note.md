@@ -338,4 +338,6 @@ int main(){
     ```
     **Notice that** : the type of `&arr` is `int*[5]`.
 
-![](./figs/arr.gif) 
+<p align="center">
+  <img width="600" height="200" src="./figs/arr.gif">
+</p
