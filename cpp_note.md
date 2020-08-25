@@ -406,4 +406,4 @@ int main(){
   <img src="./figs/arr.gif">
 </p
 
-[1] https://stackoverflow.com/questions/926752/why-should-i-prefer-to-use-member-initialization-lists
+[1] (https://stackoverflow.com/questions/926752/why-should-i-prefer-to-use-member-initialization-lists)
