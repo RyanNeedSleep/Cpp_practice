@@ -347,7 +347,7 @@ int main(){
     
     The moment a const type is initialized, you have to provide it with an argument (when an object is initialized, its constructor is called first, and then the constructor of its member object)
     
-    reference: [Why should I prefer to use member initialization lists?][1]
+    reference: [Why should I prefer to use member initialization lists?](https://stackoverflow.com/questions/926752/why-should-i-prefer-to-use-member-initialization-lists)
 
 - **Special pointer**
 
@@ -406,4 +406,3 @@ int main(){
   <img src="./figs/arr.gif">
 </p
 
-[1] (https://stackoverflow.com/questions/926752/why-should-i-prefer-to-use-member-initialization-lists)
