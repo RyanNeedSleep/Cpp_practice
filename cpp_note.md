@@ -337,4 +337,5 @@ int main(){
     cout << &arr[0] + 1 << endl;   // 104 = 100 + 1 unit of int size = 100 + 1*4
     ```
     **Notice that** : the type of `&arr` is `int*[5]`.
-    ![](./figs/arr.gif) 
+
+![](./figs/arr.gif) 
