@@ -22,7 +22,6 @@ class Vector_container : public Container {
     vector<double> v;
     public:
         Vector_container(int s): v(s) {}
-        Vector_container(std::initializer_list<double>& ls): v(ls) {}
         ~Vector_container(){}
         
         int size() const{return v.size();}
@@ -30,7 +29,7 @@ class Vector_container : public Container {
 };
 
 int main(){
-    Vector_container v({1, 2, 3, 4, 5}); 
+    
     print(v);
     cout << "done" << endl;
 }
