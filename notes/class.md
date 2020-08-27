@@ -5,4 +5,6 @@ The parent class is called base class or super class. The child class is called 
 - **Accessibility**
 
     <!-- ![](./figs/inherit1.png) -->
-    <img src="./figs/inherit1.png" height="100">
+    <p align="center">
+        <img src="./figs/inherit1.png" height="100">
+    </p
